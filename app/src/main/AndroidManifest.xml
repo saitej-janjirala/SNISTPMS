@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.snistpms">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/snistpms"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/snistpms"
+        android:supportsRtl="true"
+        android:testOnly="false"
+        android:debuggable="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="HardcodedDebugMode">
+        <activity android:name=".pdfview" android:theme="@style/pdftheme"/>
+        <activity
+            android:name=".Navigationdrawer"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".MainActivity" android:theme="@style/pdftheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <receiver android:name=".downloadbroadcast">
+            <intent-filter>
+                <action android:name="when.downloading"/>
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>

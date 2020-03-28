@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recyclerviewtoshowsubjects"/>
+    <Button
+        android:id="@+id/addsubjects"
+        android:background="@drawable/flatuibg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Subjects"
+        android:padding="8dp"
+        android:layout_marginEnd="10dp"
+        android:textColor="#FFC107"
+        android:textSize="15sp"
+        android:fontFamily="@font/comic"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentEnd="true"
+        />
+
+</RelativeLayout>
