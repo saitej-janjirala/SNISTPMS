@@ -112,7 +112,6 @@ public class Addsubjectsadapter extends RecyclerView.Adapter<Addsubjectsadapter.
             return filterResults;
 
         }
-
         @Override
         protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
             mlist.clear();
