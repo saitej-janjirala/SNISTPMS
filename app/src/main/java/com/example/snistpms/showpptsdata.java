@@ -8,10 +8,7 @@ public class showpptsdata {
     public showpptsdata(String docname,String url){
         mdocname=docname;
         murl=url;
-
-
     }
-
     public String getMurl() {
         return murl;
     }

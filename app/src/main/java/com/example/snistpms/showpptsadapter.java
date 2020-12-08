@@ -92,11 +92,9 @@ public class showpptsadapter extends RecyclerView.Adapter<showpptsadapter.showpp
                 switch (menuItem.getItemId()) {
                     case R.id.officeview:
                         xlistener.onitemclick(xposition,"microsoft");
-                        //Toast.makeText(mcontext, "Action 1", Toast.LENGTH_SHORT).show();
                         return true;
                     case R.id.googledocs:
                         xlistener.onitemclick(xposition,"google");
-                        //Toast.makeText(mcontext, "Action 2", Toast.LENGTH_SHORT).show();
                         return true;
                     default:
                 }
@@ -117,6 +115,7 @@ public class showpptsadapter extends RecyclerView.Adapter<showpptsadapter.showpp
     public showpptsviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.exampleitemforshowppts,parent,false);
         showpptsviewholder vh=new showpptsviewholder(view,mlistener,mcontext);
+
         return vh;
     }
     @Override

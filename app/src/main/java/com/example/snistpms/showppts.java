@@ -15,6 +15,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -128,7 +129,6 @@ public class showppts extends Fragment{
                             else {
 
                                 //downloadFile();
-
                                 if(checkPermission()){
                                     //mimageView.setImageResource(R.drawable.loading);
                                     if(networkconnection.isnetworkavailable()){
@@ -148,15 +148,23 @@ public class showppts extends Fragment{
                         @Override
                         public void onitemclick(int position,String type) {
                             if(networkconnection.isnetworkavailable()){
-                                Intent intent=new Intent(getContext(),pdfview.class);
-                                intent.putExtra("path","/"+x+"/"+mlist.get(position).getContentname());
-                                intent.putExtra("url",showpptsdataobject.get(position).getMurl());
-                                //intent.putExtra("htmlurl",showpptsdataobject.get(position).getMhtmlurl());
-                                intent.putExtra("type",type);
-                                startActivity(intent);
-                                //Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://docs.google.com/viewer?url="+mlist.get(position).getContenturl()));
-                                //startActivity(browserIntent);
-                                Toast.makeText(getContext(),showpptsdataobject.get(position).getMdocname(),Toast.LENGTH_SHORT).show();
+                                String url=showpptsdataobject.get(position).getMurl();
+                                Uri uri=Uri.parse(url);
+                                if (url.toString().contains(".pdf")) {
+                                    // PDF file
+                                    Intent intent=new Intent(Intent.ACTION_VIEW);
+                                    intent.setDataAndType(uri, "application/pdf");
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(intent);
+                                } else{
+                                    Intent intent = new Intent(getContext(), pdfview.class);
+                                    intent.putExtra("path", "/" + x + "/" + mlist.get(position).getContentname());
+                                    intent.putExtra("url", showpptsdataobject.get(position).getMurl());
+                                    //intent.putExtra("htmlurl",showpptsdataobject.get(position).getMhtmlurl());
+                                    intent.putExtra("type", type);
+                                    startActivity(intent);
+                                    startActivity(intent);
+                                }
                             }
                             else {
                                 Toast.makeText(getContext(),"Check Your Internet Connection",Toast.LENGTH_SHORT).show();
@@ -241,7 +249,6 @@ public class showppts extends Fragment{
             //DownloadManager.ERROR_INSUFFICIENT_SPACE;
             //Checking if the received broadcast is for our enqueued download by matching download id
             if (downloadID == id) {
-
                 Toast.makeText(getContext(), "Download Completed", Toast.LENGTH_SHORT).show();
                 //mimageView.setImageResource(R.drawable.check);
             }
@@ -255,6 +262,6 @@ public class showppts extends Fragment{
     @Override
     public void onDestroy() {
         super.onDestroy();
-        getActivity().unregisterReceiver(onDownloadComplete);
+        Objects.requireNonNull(getActivity()).unregisterReceiver(onDownloadComplete);
     }
 }
